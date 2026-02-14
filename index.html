@@ -83,7 +83,7 @@
 <div class="box" id="loginBox">
   <h2>This page is only for you ❤️</h2>
   <p><em>Hint: The day our story officially began.</em></p>
-  <input type="text" id="passwordInput" placeholder="Enter date (DDMMYYYY)">
+  <input type="text" id="passwordInput" placeholder="Enter date (DDMMYYYY) no space no special character">
   <br>
   <button onclick="checkPassword()">Unlock 🔐</button>
   <p id="error">Hmm… try again 😉</p>
@@ -114,9 +114,8 @@ I just know I’m happier with you than without you.
     </p>
   </div>
 </div>
-
 <script>
-  const correctPassword = "30102024"; // CHANGE THIS
+  const correctPassword = "30102024; // change this
 
   function checkPassword() {
     const input = document.getElementById("passwordInput").value;
@@ -132,17 +131,42 @@ I just know I’m happier with you than without you.
   const yesBtn = document.getElementById("yesBtn");
   const loveLetter = document.getElementById("loveLetter");
 
-  noBtn.addEventListener("mouseover", () => {
-    const x = Math.random() * (window.innerWidth - 150);
-    const y = Math.random() * (window.innerHeight - 150);
-    noBtn.style.left = x + "px";
-    noBtn.style.top = y + "px";
+  let noClicked = false;
+  let escapeCount = 0;
+
+  function moveButton() {
+    const container = document.querySelector(".buttons");
+    const maxX = container.clientWidth - noBtn.offsetWidth;
+    const maxY = container.clientHeight - noBtn.offsetHeight;
+
+    const randomX = Math.random() * maxX;
+    const randomY = Math.random() * maxY;
+
+    noBtn.style.left = randomX + "px";
+    noBtn.style.top = randomY + "px";
+  }
+
+  // Mobile + desktop support
+  noBtn.addEventListener("click", (e) => {
+    if (escapeCount < 4) {
+      e.preventDefault();
+      escapeCount++;
+      moveButton();
+    } else {
+      noClicked = true;
+      alert("You really tried to say no huh 😌");
+    }
   });
 
   yesBtn.addEventListener("click", () => {
+    if (!noClicked) {
+      alert("You have to try both options first 😏");
+      return;
+    }
     loveLetter.style.display = "block";
   });
 </script>
+
 
 </body>
 </html>
