@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Only For You ❤️</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #ff758c, #ff7eb3);
+      font-family: Arial, sans-serif;
+      text-align: center;
+      overflow: hidden;
+      color: white;
+    }
+
+    .box {
+      background: rgba(255, 255, 255, 0.15);
+      padding: 30px;
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      width: 90%;
+      max-width: 420px;
+    }
+
+    input {
+      padding: 10px;
+      width: 80%;
+      border-radius: 10px;
+      border: none;
+      margin-top: 15px;
+      text-align: center;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 12px 25px;
+      margin-top: 15px;
+      border: none;
+      border-radius: 20px;
+      background-color: #ff4b5c;
+      color: white;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    #mainContent {
+      display: none;
+    }
+
+    .buttons {
+      margin-top: 20px;
+      position: relative;
+      height: 120px;
+    }
+
+    #noBtn {
+      position: absolute;
+      background-color: #333;
+    }
+
+    #loveLetter {
+      display: none;
+      margin-top: 25px;
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    #error {
+      display: none;
+      color: white;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- PASSWORD SCREEN -->
+<div class="box" id="loginBox">
+  <h2>This page is only for you ❤️</h2>
+  <p><em>Hint: The day our story officially began.</em></p>
+  <input type="text" id="passwordInput" placeholder="Enter date (DDMMYYYY)">
+  <br>
+  <button onclick="checkPassword()">Unlock 🔐</button>
+  <p id="error">Hmm… try again 😉</p>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="box" id="mainContent">
+  <h1>Will you be my Valentine? ❤️</h1>
+  <div class="buttons">
+    <button id="yesBtn">Yes 💕</button>
+    <button id="noBtn">No 😏</button>
+  </div>
+
+  <div id="loveLetter">
+    <h3>For You 💌</h3>
+    <p>
+      From the day we became “us,”  
+      everything felt different.  
+      Life became softer, warmer, brighter.
+    </p>
+    <p>
+      I may not be there beside you today,  
+      but if I could, I’d hold your hand  
+      and remind you how important you are to me.
+    </p>
+    <p>
+      Thank you for choosing me.  
+      And I’ll keep choosing you — every single day. ❤️
+    </p>
+  </div>
+</div>
+
+<script>
+  const correctPassword = "14022023"; // CHANGE THIS
+
+  function checkPassword() {
+    const input = document.getElementById("passwordInput").value;
+    if (input === correctPassword) {
+      document.getElementById("loginBox").style.display = "none";
+      document.getElementById("mainContent").style.display = "block";
+    } else {
+      document.getElementById("error").style.display = "block";
+    }
+  }
+
+  const noBtn = document.getElementById("noBtn");
+  const yesBtn = document.getElementById("yesBtn");
+  const loveLetter = document.getElementById("loveLetter");
+
+  noBtn.addEventListener("mouseover", () => {
+    const x = Math.random() * (window.innerWidth - 150);
+    const y = Math.random() * (window.innerHeight - 150);
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+  });
+
+  yesBtn.addEventListener("click", () => {
+    loveLetter.style.display = "block";
+  });
+</script>
+
+</body>
+</html>
